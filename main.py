@@ -1,16 +1,17 @@
-# This is a sample Python script.
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import re
 
+gauth = GoogleAuth()
+gauth.LocalWebserverAuth()
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+drive = GoogleDrive(gauth)
 
+bibfile_doc = drive.CreateFile({'id': '19YR5EJ0-9s05lq4Utln8mrg2B6_LhJTudUwhJmoUvS4'})
+content = bibfile_doc.GetContentString("text/plain")
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+pubs = re.search(r"%% NEW PAPERS ON TOP(.*)", content, flags=re.DOTALL)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+with open("tailor-wp5.bib", "w") as f:
+    f.write(pubs.group(1).strip())
