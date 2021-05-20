@@ -1,3 +1,7 @@
+import os
+import shutil
+
+from git import Repo
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 
@@ -15,3 +19,12 @@ pubs = re.search(r"%% NEW PAPERS ON TOP(.*)", content, flags=re.DOTALL)
 
 with open("tailor-wp5.bib", "w") as f:
     f.write(pubs.group(1).strip())
+
+os.remove("../whitemech.github.io/tailor-wp5.bib")
+shutil.move("tailor-wp5.bib", "../whitemech.github.io/")
+
+r = Repo("../whitemech.github.io")
+r.git.checkout("master")
+r.git.add(".")
+r.git.commit("-m", "automatic update tailor-wp5.bib")
+r.git.push()

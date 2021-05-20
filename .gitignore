@@ -3,5 +3,6 @@ settings.yaml
 credentials.json
 tailor-wp5.bib
 .python-version
+github-token
 
 .idea/
