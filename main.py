@@ -1,5 +1,5 @@
-import os
-import shutil
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 from git import Repo
 from pydrive.auth import GoogleAuth
