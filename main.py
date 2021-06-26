@@ -17,7 +17,7 @@ drive = GoogleDrive(gauth)
 bibfile_doc = drive.CreateFile({'id': '19YR5EJ0-9s05lq4Utln8mrg2B6_LhJTudUwhJmoUvS4'})
 content = bibfile_doc.GetContentString("text/plain")
 
-pubs = re.search(r"%% PUT BIB ENTRIES ON TOP OF THE LIST(.*)%% PUT BIB ENTRIES ON TOP OF THE LIST", content,
+pubs = re.search(r"%% PUT BIB ENTRIES BELOW THIS LINE(.*)%% PUT BIB ENTRIES ABOVE THIS LINE", content,
                  flags=re.DOTALL)
 
 parser = BibTexParser(common_strings=True)
