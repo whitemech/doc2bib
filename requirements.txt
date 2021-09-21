@@ -27,3 +27,4 @@ six==1.16.0
 smmap==4.0.0
 uritemplate==3.0.1
 urllib3==1.26.4
+click~=8.0.1
